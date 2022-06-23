@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Resources\AuthResource;
 use App\Repositories\Auth\UserRepository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
@@ -37,11 +38,8 @@ class LoginController extends Controller
             return response((['message' => 'Invalided created']), 401);
         } else {
             $token = $loginRepository->createToken('fundaProjectTokenLogin')->plainTextToken;
-            $response = [
-                'users' => $loginRepository,
-                'token' => $token
-            ];
-            return response($response, 200);
+
+            return response(new AuthResource($loginRepository, $token));
         }
     }
 
