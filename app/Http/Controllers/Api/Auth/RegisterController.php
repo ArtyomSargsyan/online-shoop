@@ -32,9 +32,9 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
 
-        $storeRegister = $this->userRepository->store($request['name'], $request['email'], $request['password']);
-        $token = $storeRegister->createToken('fundaProjectToken')->plainTextToken;
+        $user = $this->userRepository->store($request['name'], $request['email'], $request['password']);
+        $token = $user->createToken('fundaProjectToken')->plainTextToken;
 
-        return response(new AuthResource($token, $storeRegister), 201);
+        return response(new AuthResource($token, $user), 201);
     }
 }

@@ -33,13 +33,13 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
 
-        $loginRepository = $this->UserRepository->login($request['email'], $request['password']);
-        if (!$loginRepository || !Hash::check($request['password'], $loginRepository->password)) {
+        $user = $this->UserRepository->login($request['email'], $request['password']);
+        if (!$user || !Hash::check($request['password'], $user->password)) {
             return response((['message' => 'Invalided created']), 401);
         } else {
-            $token = $loginRepository->createToken('fundaProjectTokenLogin')->plainTextToken;
+            $token = $user->createToken('fundaProjectTokenLogin')->plainTextToken;
 
-            return response(new AuthResource($loginRepository, $token));
+            return response(new AuthResource($user, $token));
         }
     }
 
