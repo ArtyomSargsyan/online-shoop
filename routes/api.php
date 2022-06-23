@@ -22,5 +22,4 @@ Route::post('/login/', [LoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('logout', [LoginController::class, 'logout']);
-    Route::get('home', [HomeController::class, 'index']);
-});
+  });

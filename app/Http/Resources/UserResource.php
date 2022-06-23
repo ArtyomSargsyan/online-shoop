@@ -8,9 +8,9 @@ class UserResource extends JsonResource
 {
 
     /**
-     * @var string
+     * @var
      */
-    private string $user;
+    private $user;
 
     /**
      * @param $user
@@ -28,7 +28,9 @@ class UserResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'user' => $this->user,
+            'name' => $this->user->name,
+            'email'  => $this->user->email,
+            'created at' => $this->user->created_at
         ];
     }
 

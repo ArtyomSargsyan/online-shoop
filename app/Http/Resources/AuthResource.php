@@ -18,7 +18,7 @@ class AuthResource extends JsonResource
 
     /**
      * @param $token
-     * @param $storeRegister
+     * @param $user
      */
     public function __construct($token, $user)
     {
@@ -34,20 +34,9 @@ class AuthResource extends JsonResource
     public function toArray($request): array
     {
         return [
-            'storeRegister' => new UserResource($this->user),
+            'user' => new UserResource($this->user),
             'token' => $this->token
         ];
     }
 
-    /**
-     * @param $request
-     * @return array
-     */
-    public function with($request): array
-    {
-        return [
-            'versin' => '1.2.0',
-            'post_url' => url('https://shoop.api.com')
-        ];
-    }
 }
