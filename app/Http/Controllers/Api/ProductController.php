@@ -36,7 +36,10 @@ class ProductController extends Controller
         $this->imageRepository = $imageRepository;
     }
 
-
+    /**
+     * @param ProductRequest $request
+     * @return Application|ResponseFactory|Response
+     */
     public function store(ProductRequest $request)
     {
         $userId = Auth::id();
