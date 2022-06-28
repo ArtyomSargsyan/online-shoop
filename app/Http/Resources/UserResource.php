@@ -10,7 +10,7 @@ class UserResource extends JsonResource
     /**
      * @var object
      */
-    private object $user;
+    private  $user;
 
     /**
      * @param $user

@@ -3,7 +3,7 @@ namespace App\Repositories\Auth;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use phpDocumentor\Reflection\Types\Integer;
+
 
 class UserRepository
 {

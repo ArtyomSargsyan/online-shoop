@@ -2,8 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
-use App\Http\Controllers\Api\HomeController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +21,6 @@ Route::post('/login/', [LoginController::class, 'login']);
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::get('logout', [LoginController::class, 'logout']);
+    Route::post('product', [ProductController::class, 'store']);
   });
+
