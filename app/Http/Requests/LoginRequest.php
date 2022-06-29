@@ -4,12 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property-read string $email
+ * @property-read string $password
+ */
 class LoginRequest extends FormRequest
 {
-    /**
-     * @var mixed
-     */
-    public $name;
 
     /**
      * Determine if the user is authorized to make this request.
@@ -29,8 +29,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-           'email' => 'required|email',
-           'password' => 'required|min:6'
+            'email' => 'required|email',
+            'password' => 'required|min:6'
         ];
     }
 }

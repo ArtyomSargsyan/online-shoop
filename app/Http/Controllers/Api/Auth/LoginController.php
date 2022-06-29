@@ -33,7 +33,7 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
 
-        $user = $this->UserRepository->login($request['email'], $request['password']);
+        $user = $this->UserRepository->login($request->email, $request->password);
         if (!$user || !Hash::check($request['password'], $user->password)) {
             return response((['message' => 'Invalided created']), 401);
         } else {

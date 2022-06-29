@@ -11,7 +11,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
+
 
 class ProductController extends Controller
 {
@@ -43,25 +43,10 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $userId = Auth::id();
-
         $product = $this->productRepository->store($request->name, $request->displayName, $request->price, $request->description, $userId);
+        $images = $this->imageRepository->store($request->images, $userId, $product->id);
 
-        if ($request->hasFile('images')) {
-            foreach ($request->file('images') as $image) {
-                $path = Storage::putFile('public/' . $userId, $image);
-                $pat[] = $path;
-            }
-        }
-
-        $image = json_encode($pat);
-        $imgTrim = trim($image, "[]");
-        $imagesArr = explode(',', $imgTrim);
-
-        foreach ($imagesArr as $image) {
-            $this->imageRepository->send($image, $product->id);
-        }
-
-        return response(new ProductResource($product,  $imagesArr));
+        return response(new ProductResource($product, $images));
     }
 
 }

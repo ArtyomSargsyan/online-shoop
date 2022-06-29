@@ -12,24 +12,23 @@ class AuthResource extends JsonResource
     private string $token;
 
     /**
-     * @var string
+     * @var object
      */
-    private string $user;
+    private object $user;
 
     /**
-     * @param $token
-     * @param $user
+     * @param string $token
+     * @param object $user
      */
-    public function __construct($token, $user)
+    public function __construct(string $token, object $user)
     {
         $this->token = $token;
         $this->user = $user;
     }
 
-
     /**
      * @param $request
-     * @return string[]
+     * @return array
      */
     public function toArray($request): array
     {

@@ -10,12 +10,12 @@ class UserResource extends JsonResource
     /**
      * @var object
      */
-    private  $user;
+    private object  $user;
 
     /**
-     * @param $user
+     * @param object $user
      */
-    public function __construct($user)
+    public function __construct( object $user)
     {
         $this->user = $user;
     }
